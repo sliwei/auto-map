@@ -1,0 +1,11 @@
+.el-form .el-form-item.is-required .el-form-item__label {
+  position: relative;
+}
+
+.el-form .el-form-item.is-required .el-form-item__label:before {
+  top: 6px;
+  left: -15px;
+  font-size: 26px;
+  position: absolute;
+  color: #EE6D34;
+}

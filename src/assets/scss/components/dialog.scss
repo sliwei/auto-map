@@ -1,0 +1,37 @@
+.el-dialog {
+  border-radius: 10px
+}
+
+.el-dialog__header {
+  padding: 40px 60px 0 50px;
+  text-align: left;
+}
+
+.el-dialog__title {
+  line-height: 1.375;
+  font-weight: 600;
+}
+
+.el-dialog__body {
+  padding: 20px 50px 0 50px;
+  text-align: left;
+}
+
+.el-dialog__close {
+  font-size: 26px;
+  font-weight: 900;
+  color: black !important;
+}
+
+.el-dialog__headerbtn {
+  position: absolute;
+  top: 25px;
+  right: 20px;
+}
+
+.el-dialog__footer {
+  position: absolute;
+  right: 50px;
+  bottom: 40px;
+  padding: 0;
+}

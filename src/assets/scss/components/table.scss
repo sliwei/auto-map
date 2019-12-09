@@ -1,0 +1,54 @@
+.el-table {
+  border-radius: 5px 5px 0 0;
+}
+
+.el-table th.is-leaf {
+  border: 0;
+}
+
+.el-table td {
+  border-color: #DCDCDC;
+}
+
+//.el-table__row:last-child td {
+//  border: 0;
+//}
+
+.el-table__header-wrapper:after {
+  content: none!important;
+}
+
+.el-table--enable-row-hover .el-table__body tr:hover > td {
+  background-color: #EAF6EF;
+}
+
+.el-table__header-wrapper {
+  &:after {
+    content: '';
+    display: block;
+    width: calc(100% - 20px);
+    margin: 0 auto;
+    height: 1px;
+    background-color: rgba(151, 151, 151, 0.3);
+  }
+}
+
+.el-table::before {
+  height: 0;
+}
+
+.el-table th, .el-table td {
+  padding: 0;
+}
+
+.el-table td .cell, .el-table th > .cell {
+  height: 40px !important;
+  display: table-cell;
+  vertical-align: middle;
+  font-weight: initial;
+  font-size: 12px;
+}
+
+.el-table td .cell {
+  color: #000000;
+}

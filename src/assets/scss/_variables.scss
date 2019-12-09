@@ -1,0 +1,17 @@
+/*改变主题色变量*/
+$--color-primary: #2fad65;
+$--input-focus-border: #DCDCDC;
+//$--border-radius-small: 10px;
+$--dialog-title-font-size: 24px;
+$--color-text-primary: #333333;
+$--color-info: #999999;
+$--color-text-secondary: #999999;
+
+/*a标签*/
+$a-font-size: 14px;
+
+/*改变 icon 字体路径变量，必需*/
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+/*导入element样式库*/
+@import "~element-ui/packages/theme-chalk/src/index";

@@ -1,0 +1,31 @@
+.el-pagination {
+  text-align: center;
+}
+
+.el-pager li, .el-pager li:last-child, .el-pagination .btn-next, .el-pagination .btn-prev {
+  border: none;
+  background-color: rgba(255,255,255,0);
+}
+
+.el-pager li.active {
+  background: #2fad65;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.el-pager li.active:hover {
+  color: white;
+}
+
+.el-pager li:hover, .el-pagination button:hover {
+  color: #2fad65;
+}
+
+.el-pagination__editor:focus {
+  border: 1px solid #2fad65;
+}
+
+.el-pagination button:disabled {
+  background-color: rgba(255,255,255,0);
+  color: #C0C4CC;
+}

@@ -1,0 +1,50 @@
+/**
+* 主标题：默认标题样式，下间距40
+* label：定宽，右对齐，表单无法给必填*号时用样式添加
+* 输入：默认宽580
+* 图片：图片包含上传、懒加载、可预览
+* ...
+**/
+
+/**
+* 有些情况下,edge的el-form-item__content会换行
+**/
+
+@mixin content_left {
+  .el-form-item__content {
+    float: left;
+  }
+}
+
+.repair_el_form_content_for_edge {
+  @include content_left;
+}
+
+.add_required {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  @include content_left;
+
+  .el-form-item__label:before {
+    top: 6px;
+    font-size: 26px;
+    color: #EE6D34;
+    content: '*';
+    margin-right: 4px;
+    position: absolute;
+    left: -15px;
+  }
+}
+
+/**
+* 文本输入样式
+**/
+.reject_val  {
+  textarea {
+    font-size: 14px;
+    color: #606266;
+    line-height: 22px;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  }
+}
