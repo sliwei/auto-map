@@ -1,0 +1,15 @@
+.el-picker-panel .el-picker-panel__sidebar {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 0;
+  right: 0;
+}
+
+.el-picker-panel .el-picker-panel__sidebar .el-picker-panel__shortcut {
+  flex: 1;
+}
+
+.el-picker-panel__sidebar + .el-picker-panel__body {
+  margin-left: 0;
+  margin-right: 110px;
+}

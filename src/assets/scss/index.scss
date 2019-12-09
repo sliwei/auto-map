@@ -1,0 +1,41 @@
+/**
+*
+* CSS INDEX
+*
+**/
+
+/**
+* 站点变量
+* 用于覆盖element UI样式的变量
+**/
+@import "variables";
+
+/**
+* 全局公共样式
+* 类似于bootstrap的基础样式，减少页面内样式和内联样式
+* 自定义公共样式添加到里面
+**/
+@import "common";
+
+/**
+* 进度条
+**/
+@import "nprogress";
+
+/**
+* 动画
+**/
+@import "animation";
+
+/**
+* 组件自定义样式
+* UI框架的组件"魔改"，跟随UI设计改变
+**/
+@import "components/index";
+
+/**
+* 页面重复样式
+* 将项目内多个相同页面的样式提到这里
+* 有差异或很少多处共用的样式"请写在页面里面"
+**/
+@import "page/index";

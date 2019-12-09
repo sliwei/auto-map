@@ -1,0 +1,19 @@
+.el-menu {
+  background-color: #f3f3f3;
+}
+
+.el-submenu__title {
+  color: #2FAD65;
+}
+
+.el-menu-item:hover, .el-menu-item:focus, .el-submenu__title:hover {
+  background: #f3f3f3;
+}
+
+.el-submenu__icon-arrow {
+  display: none;
+}
+
+.el-menu-item.is-active {
+  background-color: white;
+}

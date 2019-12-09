@@ -1,0 +1,34 @@
+/**
+* 条件模块：间距20px
+* 数据表格上下20px
+* ...
+**/
+
+.flex_box {
+  display: flex;
+}
+
+.flex_center {
+  align-items: center;
+  justify-content: center;
+}
+
+.flex_end {
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.flex_item {
+  flex: 1;
+}
+
+.list_num_label {
+  font-size: 14px;
+  color: #666666;
+}
+
+.list_num {
+  font-size: 14px;
+  font-weight: bold;
+  color: #000000;
+}
