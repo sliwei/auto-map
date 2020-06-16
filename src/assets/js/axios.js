@@ -4,7 +4,7 @@ import Cookie from 'js-cookie'
 
 // axios 超时
 axios.defaults.timeout = 8000;
-axios.defaults.withCredentials = true
+// axios.defaults.withCredentials = true
 
 // 异常处理
 const error = dat => {
@@ -66,7 +66,7 @@ export default (url, options = {}) => {
 			params: opt.params || {},
 			data: opt.data || {},
 			responseType: opt.dataType || 'json',
-			withCredentials: opt.withCredentials || true,
+			// withCredentials: opt.withCredentials || true,
 			// 设置默认请求头
 			headers: opt.headers || {'Content-Type': 'application/json'}
 		}).then(res => {
