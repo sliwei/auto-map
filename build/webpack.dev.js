@@ -21,7 +21,15 @@ const devWebpackConfig = merge(common, {
     open: false,
     overlay: { warnings: false, errors: true },
     publicPath: '/',
-    proxy: {},
+    proxy: {
+      '/blog': { // 运营
+        target: 'https://api.bstu.cn',
+        changeOrigin: true,
+        pathRewrite: {
+          // '/dev': '/'
+        }
+      },
+    },
     quiet: true,
     watchOptions: { poll: false },
   },

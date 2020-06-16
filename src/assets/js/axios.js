@@ -37,7 +37,7 @@ axios.interceptors.request.use(req => {
 
 // 响应拦截器
 axios.interceptors.response.use(res => {
-	if (res.data.status === 1 || res.data.status === 8098) {
+	if (res.data.code === 200) {
 		return res;
 	} else {
 		error(res.data);
@@ -49,13 +49,8 @@ axios.interceptors.response.use(res => {
 });
 
 // 封装请求
-export default (url, options) => {
-	const autoCommon = options.autoCommon || {
-		terminal: 'WEB',
-		opid: Cookie.get('OP01'),
-		atoken: Cookie.get('OP03'),
-		// _t: new Date().getTime(),
-	};
+export default (url, options = {}) => {
+	const autoCommon = options.autoCommon || {};
 	let opt = options || {};
 	let method = opt.type || 'post';
 	if (method === 'get' && method === 'GET')
