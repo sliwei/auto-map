@@ -84,9 +84,9 @@
 						data: data
 					}
 				}
-				const type = await this.$ajax('/blog/ex/type', {type: 'GET'})
+				const type = await this.$ajax('https://api.bstu.cn/blog/ex/type', {type: 'GET'})
 				const types = type.data
-				const res = await this.$ajax('/blog/ex/data', {type: 'GET'})
+				const res = await this.$ajax('https://api.bstu.cn/blog/ex/data', {type: 'GET'})
 				const data = res.data || []
 				const xAxis = []
 				data.map(item => {
