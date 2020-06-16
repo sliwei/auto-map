@@ -31,6 +31,18 @@ export default new Router({
 				},
 			]
 		},
+		{
+			path: '/expenses',
+			name: 'expensesPage',
+			meta: {title: 'expenses'},
+			component: () => import(/* webpackChunkName: "ExpensesPage" */ '@/views/expenses'),
+		},
+		{
+			path: '/expenses-total',
+			name: 'expensesTotal',
+			meta: {title: 'expenses'},
+			component: () => import(/* webpackChunkName: "ExpensesPage" */ '@/views/expenses/total'),
+		},
 
 	]
 })

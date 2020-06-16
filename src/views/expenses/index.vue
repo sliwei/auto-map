@@ -1,0 +1,257 @@
+<template>
+	<div ref="line" style="100%;height:100vh"></div>
+</template>
+
+<script>
+	import echarts from 'echarts'
+
+	const hexToRgba = (hex, opacity) => {
+		return "rgba(" + parseInt("0x" + hex.slice(1, 3)) + "," + parseInt("0x" + hex.slice(3, 5)) + "," + parseInt("0x" + hex.slice(5, 7)) + "," + opacity + ")";
+	};
+	export default {
+		name: 'expensesPage',
+		data() {
+			return {
+				chart: ''
+			}
+		},
+		methods: {
+			initChart() {
+				let dom = this.$refs.line;
+				this.chart = echarts.init(dom);
+				let setTime;
+				const set = () => {
+					setTime && clearTimeout(setTime);
+					setTime = setTimeout(() => {
+						if (this.chart) this.chart.resize()
+					}, 100)
+				};
+				window.onresize = () => set();
+			},
+			async getData () {
+				const getSeries = (name, data, color) => {
+					return {
+						name: name,
+						type: 'line',
+						// smooth: true, //是否平滑
+						showAllSymbol: true,
+						// symbol: 'image://./static/images/guang-circle.png',
+						symbol: 'circle',
+						symbolSize: 25,
+						lineStyle: {
+							normal: {
+								color: color,
+								shadowColor: 'rgba(0, 0, 0, .3)',
+								shadowBlur: 0,
+								shadowOffsetY: 5,
+								shadowOffsetX: 5,
+							},
+						},
+						label: {
+							show: true,
+							position: 'top',
+							textStyle: {
+								color: color,
+							}
+						},
+						itemStyle: {
+							color: color,
+							borderColor: "#fff",
+							borderWidth: 3,
+							shadowColor: 'rgba(0, 0, 0, .3)',
+							shadowBlur: 0,
+							shadowOffsetY: 2,
+							shadowOffsetX: 2,
+						},
+						tooltip: {
+							show: true
+						},
+						areaStyle: {
+							normal: {
+								color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+									offset: 0,
+									color: hexToRgba(color, .3)
+								},
+									{
+										offset: 1,
+										color: hexToRgba(color, 0)
+									}
+								], false),
+								shadowColor: hexToRgba(color, 0.9),
+								shadowBlur: 20
+							}
+						},
+						data: data
+					}
+				}
+				const type = await this.$ajax('/blog/ex/type', {type: 'GET'})
+				const types = type.data
+				const res = await this.$ajax('/blog/ex/data', {type: 'GET'})
+				const data = res.data || []
+				const xAxis = []
+				data.map(item => {
+					if (!xAxis.includes(item.date)) {
+						xAxis.push(item.date)
+					}
+					types.map(tItem => {
+						if (!tItem.data) {
+							tItem.data = []
+						}
+						if (tItem.id === item.type_id) {
+							tItem.data.push(item.num)
+						}
+					})
+
+				})
+				const dataList = types
+
+				// let dataList = [
+				// 	{
+				// 		label: '房租',
+				// 		color: '#f72771',
+				// 		data: [2100, 164, 2019, 1403, 983]
+				// 	},
+				// 	{
+				// 		label: '购物',
+				// 		color: '#a6df35',
+				// 		data: [1200, 864, 219, 2603, 1283]
+				// 	},
+				// 	{
+				// 		label: '吃饭',
+				// 		color: '#2ae586',
+				// 		data: [1500, 2164, 1119, 903, 283]
+				// 	},
+				// 	{
+				// 		label: '车费',
+				// 		color: '#6c50f3',
+				// 		data: [1800, 1264, 1319, 303, 2813]
+				// 	},
+				// ]
+
+				const series = []
+				// const xAxis = ['1月', '2月', '3月', '4月', '5月']
+				dataList.map(item => {
+					series.push(getSeries(item.name, item.data, item.color))
+				})
+				const legendData = ['日用气量分析', '日用气量分析2']
+
+				let option = {
+					backgroundColor: '#080b30',
+					title: {
+						text: '开销分析',
+						textStyle: {
+							align: 'center',
+							color: '#fff',
+							fontSize: 20,
+						},
+						top: '2%',
+						left: 'center',
+					},
+					legend: {
+						color: ["#17B4FA", "#47D8BE", "#F9A589"],
+						data: legendData,
+						left: 'center',
+						top: "8%",
+						textStyle: {
+							color: "#ffffff"
+						}
+					},
+					tooltip: {
+						trigger: 'axis',
+						axisPointer: {
+							lineStyle: {
+								color: {
+									type: 'linear',
+									x: 0,
+									y: 0,
+									x2: 0,
+									y2: 1,
+									colorStops: [{
+										offset: 0,
+										color: 'rgba(0, 255, 233,0)'
+									}, {
+										offset: 0.5,
+										color: 'rgba(255, 255, 255,1)',
+									}, {
+										offset: 1,
+										color: 'rgba(0, 255, 233,0)'
+									}],
+									global: false
+								}
+							},
+						},
+					},
+					grid: {
+						top: '15%',
+						left: '5%',
+						right: '5%',
+						bottom: '15%',
+						// containLabel: true
+					},
+					xAxis: {
+						type: 'category',
+						axisLine: {
+							show: true,
+							lineStyle: {
+								color: '#9581F5'
+							},
+						},
+						splitArea: {
+							// show: true,
+							color: '#f00',
+							lineStyle: {
+								color: '#f00'
+							},
+						},
+						axisLabel: {
+							color: '#fff'
+						},
+						splitLine: {
+							show: false
+						},
+						boundaryGap: false,
+						data: xAxis,
+					},
+					yAxis: {
+						type: 'value',
+						min: 0,
+						// max: 140,
+						splitNumber: 4,
+						splitLine: {
+							show: true,
+							lineStyle: {
+								color: 'rgba(255,255,255,0.1)'
+							}
+						},
+						axisLine: {
+							show: true,
+							lineStyle: {
+								color: '#9581F5'
+							},
+						},
+						axisLabel: {
+							show: true,
+							margin: 20,
+							textStyle: {
+								color: '#d1e6eb',
+							},
+						},
+						axisTick: {
+							show: true,
+						},
+					},
+					series: series
+				}
+				this.chart && this.chart.setOption(option, true);
+
+			},
+		},
+		mounted() {
+			this.initChart()
+			this.getData()
+		},
+	}
+</script>
+
+<style lang="scss" scoped>
+</style>
