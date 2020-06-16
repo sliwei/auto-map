@@ -4,6 +4,7 @@ import Cookie from 'js-cookie'
 
 // axios 超时
 axios.defaults.timeout = 8000;
+axios.defaults.withCredentials = true
 
 // 异常处理
 const error = dat => {
