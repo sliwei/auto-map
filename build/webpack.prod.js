@@ -8,6 +8,7 @@ const webpack = require('webpack');
 const common = require('./webpack.base.js');
 const utils = require('./utils');
 const opt = utils.config();
+const UploadOss = require('../plugin/UploadOss')
 
 module.exports = merge(common, {
   // 打包模式
@@ -101,6 +102,9 @@ module.exports = merge(common, {
       filename: 'css/[name].[contenthash:8].css',
       chunkFilename: 'css/[name].[contenthash:8].css',
     }),
+    new UploadOss({
+      prefix: 'static/auto-map/'
+    })
   ],
   // 压缩处理
   optimization: {
